@@ -1,0 +1,13 @@
+target/
+data/
+notebooks/prelimenary
+*.skel.rs
+bpftrace-hdrs/
+result
+.direnv/
+__pycache__/
+.vscode
+.venv/
+__pycache__/
+node_modules/
+*.pyc

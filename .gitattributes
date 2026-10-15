@@ -1,0 +1,4 @@
+*.ipynb -linguist-detectable
+misc/** -linguist-detectable
+*.c -linguist-detectable
+*.h -linguist-detectable

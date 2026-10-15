@@ -1,0 +1,65 @@
+[package]
+name = "poc"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "epoll_server"
+path = "src/epoll_server/main.rs"
+
+[[bin]]
+name = "stdin"
+path = "src/stdin/main.rs"
+
+[[bin]]
+name = "futex"
+path = "src/futex/main.rs"
+
+[[bin]]
+name = "pipe"
+path = "src/pipe/main.rs"
+
+[[bin]]
+name = "fs-sync"
+path = "src/fs-sync/src/main.rs"
+
+[[bin]]
+name = "unix-pair"
+path = "src/unix_sock/socketpair.rs"
+
+[[bin]]
+name = "unix-accept-connect"
+path = "src/unix_sock/accept_connect.rs"
+
+[[bin]]
+name = "tcp-server"
+path = "src/sync-tcp/server.rs"
+
+[[bin]]
+name = "tcp-client"
+path = "src/sync-tcp/client.rs"
+
+[[bin]]
+name = "udp-server"
+path = "src/sync-udp/server.rs"
+
+[[bin]]
+name = "udp-client"
+path = "src/sync-udp/client.rs"
+
+[[bin]]
+name = "multithreaded"
+path = "src/multithreaded/main.rs"
+
+[[bin]]
+name = "async-http-client"
+path = "src/async-http-client/main.rs"
+
+[dependencies]
+tokio = { version = "1", features = ["full"]}
+poem = "1.2"
+reqwest = { version = "0.11", features = ["json"] }
+libc = "0.2.153"
+nix = { version = "0.28.0", features = ["process"] }
+rand = "0.8"
+anyhow = "1.0.98"
