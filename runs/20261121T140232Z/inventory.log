@@ -1,0 +1,4 @@
+2026-11-21 14:02:32.698 UTC | inventory PID 10057 request TID 10057 lock-holder TID 10066 mutex @ 0x7b1257e232b0
+2026-11-21 14:10:26.000 UTC | FAULT ON applied by inv-lockholder TID 10066
+2026-11-21 14:11:06.298 UTC | FAULT OFF applied by inv-lockholder TID 10066
+2026-11-21 14:12:24.237 UTC | inventory upstream closed; exiting

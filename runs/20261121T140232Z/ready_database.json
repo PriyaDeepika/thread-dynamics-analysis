@@ -1,0 +1,1 @@
+{"role": "database", "pid": 10055, "main_tid": 10055, "threads": {"database": 10055}, "fds": {"up_req_r": "pipe:[84239]", "up_rep_w": "pipe:[84240]"}}

@@ -54,7 +54,62 @@ with k2: ui.kpi_card("Graph elements", len(graph_data["nodes"]), "threads and re
 with k3: ui.kpi_card("Relationships", len(graph_data["edges"]), "edges")
 st.write("")
 
-td_component.thread_dynamics(graph_data, glue.on_request_cb(machine_id, pid), key="thread_dynamics_state")
+import networkx as nx
+import plotly.graph_objects as go
+
+renderer = st.radio(
+    "Graph renderer",
+    ["SVG", "Original interactive graph (WebGL)"],
+    horizontal=True,
+)
+
+if renderer == "SVG":
+    layout_graph = nx.Graph()
+    layout_graph.add_nodes_from(graph_data["nodes"])
+    layout_graph.add_edges_from(
+        (edge["source"], edge["target"]) for edge in graph_data["edges"]
+    )
+    positions = nx.spring_layout(layout_graph, seed=42)
+
+    edge_x, edge_y = [], []
+    for source, target in layout_graph.edges:
+        x0, y0 = positions[source]
+        x1, y1 = positions[target]
+        edge_x.extend([x0, x1, None])
+        edge_y.extend([y0, y1, None])
+
+    nodes = list(layout_graph.nodes)
+    fig = go.Figure([
+        go.Scatter(
+            x=edge_x, y=edge_y, mode="lines",
+            line=dict(color="#9ca3af", width=1),
+            hoverinfo="skip", showlegend=False,
+        ),
+        go.Scatter(
+            x=[positions[node][0] for node in nodes],
+            y=[positions[node][1] for node in nodes],
+            text=nodes, mode="markers+text", textposition="top center",
+            marker=dict(
+                size=14,
+                color=["#3b82f6" if node.startswith("thread-") else "#f59e0b"
+                       for node in nodes],
+            ),
+            showlegend=False,
+        ),
+    ])
+    fig.update_layout(
+        height=520,
+        xaxis=dict(visible=False),
+        yaxis=dict(visible=False),
+    )
+    st.plotly_chart(fig, width="stretch")
+    st.dataframe(graph_data["edges"], hide_index=True, width="stretch")
+else:
+    td_component.thread_dynamics(
+        graph_data, glue.on_request_cb(machine_id, pid),
+        key="thread_dynamics_state",
+    )
+
 
 state = ss.get("thread_dynamics_state") or {}
 if state.get("request") and state.get("response") is None:

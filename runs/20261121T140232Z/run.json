@@ -1,0 +1,89 @@
+{
+  "run_dir": "/home/cse-sdpl/os-research/prism-project/prism/runs/20261121T140232Z",
+  "stamp": "20261121T140232Z",
+  "pids": "10060,10059,10058,10057,10055",
+  "db_name": "chain-20261121T140232Z.db3",
+  "roles": {
+    "client": {
+      "pid": 10060,
+      "main_tid": 10060,
+      "threads": {
+        "client": 10060
+      },
+      "fds": {
+        "down_req_w": "pipe:[84233]",
+        "down_rep_r": "pipe:[84234]"
+      }
+    },
+    "gateway": {
+      "pid": 10059,
+      "main_tid": 10059,
+      "threads": {
+        "gateway": 10059
+      },
+      "fds": {
+        "up_req_r": "pipe:[84233]",
+        "up_rep_w": "pipe:[84234]",
+        "down_req_w": "pipe:[84235]",
+        "down_rep_r": "pipe:[84236]"
+      }
+    },
+    "api": {
+      "pid": 10058,
+      "main_tid": 10058,
+      "threads": {
+        "api": 10058
+      },
+      "fds": {
+        "up_req_r": "pipe:[84235]",
+        "up_rep_w": "pipe:[84236]",
+        "down_req_w": "pipe:[84237]",
+        "down_rep_r": "pipe:[84238]"
+      }
+    },
+    "inventory": {
+      "pid": 10057,
+      "main_tid": 10057,
+      "threads": {
+        "inventory (request thread)": 10057,
+        "inv-lockholder": 10066
+      },
+      "mutex_address": "0x7b1257e232b0",
+      "fds": {
+        "up_req_r": "pipe:[84237]",
+        "up_rep_w": "pipe:[84238]",
+        "down_req_w": "pipe:[84239]",
+        "down_rep_r": "pipe:[84240]"
+      }
+    },
+    "database": {
+      "pid": 10055,
+      "main_tid": 10055,
+      "threads": {
+        "database": 10055
+      },
+      "fds": {
+        "up_req_r": "pipe:[84239]",
+        "up_rep_w": "pipe:[84240]"
+      }
+    }
+  },
+  "params": {
+    "cmd": "run",
+    "out": "runs",
+    "warmup": 15,
+    "baseline": 40,
+    "fault": 40,
+    "recovery": 40,
+    "trim": 5,
+    "think_ms": 100.0,
+    "fault_hold_ms": 500.0,
+    "fault_gap_ms": 2.0,
+    "normal_hold_ms": 1.0,
+    "normal_gap_ms": 40.0,
+    "request_hold_ms": 3.0,
+    "no_wait": false,
+    "start_delay": 5.0,
+    "stop_delay": 3.0
+  }
+}

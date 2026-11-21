@@ -1,0 +1,1 @@
+{"role": "client", "pid": 10060, "main_tid": 10060, "threads": {"client": 10060}, "fds": {"down_req_w": "pipe:[84233]", "down_rep_r": "pipe:[84234]"}}
